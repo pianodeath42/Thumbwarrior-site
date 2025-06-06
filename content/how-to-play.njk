@@ -1,0 +1,144 @@
+---
+layout: layouts/base.njk
+title: How to Play Thumbwarrior
+eleventyNavigation:
+  key: HowToPlay # A unique key for this navigation item
+  title: How to Play # The text that will appear in the navigation menu
+  # parent: Home # You can uncomment this if you want it to be a sub-item of Home. For now, it's a top-level item.
+  order: 2 # This helps order your navigation items (e.g., Home is 1, How to Play is 2)
+---
+
+<article class="page-content how-to-play-content site-container"> {# Added site-container for consistent padding/width #}
+  <h1>How to Play Thumbwarrior</h1>
+
+  <p>Welcome to the official guide for Thumbwarrior! Get ready to master strategic card battles with just one thumb. This page will walk you through the core mechanics and help you start your first epic run through the 5 challenging floors.</p>
+
+  <section id="basics">
+    <h2>The Basics</h2>
+    <ul>
+      <li><strong>Your Goal:</strong> Your primary objective is to conquer all 5 floors of the dungeon, each culminating in a unique and challenging boss battle. Along the way, you'll build a powerful deck of cards and gather potent relics.</li>
+      <li><strong>One-Thumb Controls:</strong> Every action is designed for effortless single-thumb play:
+        <ul>
+          <li><strong>Card Carousel:</strong> Your hand of cards is presented in an easy-to-navigate carousel. <strong>Drag</strong> the carousel left or right to view your cards.</li>
+          <li><strong>Play Cards:</strong> <strong>Tap</strong> a card in the carousel to select it. If it requires a target, available targets will highlight; <strong>tap</strong> the target to play the card. If no target is needed, a confirmation tap might be required.</li>
+          <li><strong>Get Details:</strong> Curious about a card, relic, or status effect? <strong>Long tap</strong> on almost anything on screen to bring up a detailed description!</li>
+        </ul>
+      </li>
+      <li><strong>Core Loop:</strong>
+        <ol>
+          <li><strong>Start a Run:</strong> From the main menu, tap "Standard Run" to begin your adventure.</li>
+          <li><strong>Navigate the Dungeon:</strong> Choose your path on the vertical dungeon map by tapping the next encounter node.</li>
+          <li><strong>Encounters:</strong> Face enemies in tactical card battles, discover helpful events, or find valuable treasures and shops.</li>
+          <li><strong>Collect & Upgrade:</strong> Gather new cards and powerful relics to enhance your deck's strategy.</li>
+          <li><strong>Conquer Floors:</strong> Defeat the boss of each floor to advance to the next.</li>
+          <li><strong>Run End & Meta-Progression:</strong> If you're defeated, your run ends. However, you'll make progress through the <strong>Stressor System</strong>, unlocking higher difficulty levels for future runs, offering new challenges and potentially greater rewards.</li>
+        </ol>
+      </li>
+      <li><strong>Endless Mode:</strong> After successfully conquering all 5 floors in a standard run, you'll unlock <strong>Endless Mode</strong>! See how long you can survive and aim for the high score.</li>
+    </ul>
+    <figure class="gameplay-visual">
+      <img src="/gifs/one-thumb-card-play.gif" alt="One-thumb card play and carousel drag">
+      <figcaption>Drag the carousel and tap to play cards with one thumb.</figcaption>
+    </figure>
+  </section>
+
+  <section id="understanding-cards">
+    <h2>Understanding Your Cards</h2>
+    <p>Your deck is your primary weapon and defense. Mastering your cards is crucial!</p>
+    <ul>
+      <li><strong>Card Types:</strong> Cards fall into three main categories, often distinguished by color or an icon:
+        <ul>
+          <li><strong>Attack (Red):</strong> Primarily used to deal damage to enemies.</li>
+          <li><strong>Skill (Blue):</strong> Offer a wide range of utility, from gaining Block (armor) to drawing more cards, applying buffs to yourself, or debuffs to enemies.</li>
+          <li><strong>Power (Green/Purple):</strong> Provide ongoing passive effects that last for the rest of combat (or sometimes longer) once played.</li>
+        </ul>
+      </li>
+      <li><strong>Energy Cost:</strong>
+        <ul>
+          <li>Most cards require <strong>Energy</strong> to play, indicated by a number on the card.</li>
+          <li>You start each turn with <strong>3 Energy</strong>. Unused energy is typically lost at the end of your turn.</li>
+        </ul>
+      </li>
+      <li><strong>Playing Cards (Recap):</strong> <strong>Drag</strong> the carousel to find your card, <strong>tap</strong> to select, then <strong>tap</strong> a target (if needed) or confirm to play.</li>
+      <li><strong>Card Anatomy & Keywords:</strong>
+        <ul>
+          <li><strong>Name:</strong> The card's title.</li>
+          <li><strong>Energy Cost:</strong> How much energy it takes to play.</li>
+          <li><strong>Type:</strong> Attack, Skill, or Power.</li>
+          <li><strong>Description:</strong> Explains what the card does. This is where you'll see numbers for damage ({D}), block ({B}), and keywords.</li>
+          <li><strong>Rarity:</strong> (e.g., Basic, Common, Uncommon, Rare) Indicates how often you might find the card.</li>
+          <li><strong>Requires Target:</strong> Some cards must be played on an enemy or yourself.</li>
+          <li><strong>Exhausts:</strong> Some cards are removed from your deck for the rest of the current combat after being played.</li>
+          <li><strong>HP Cost:</strong> Some powerful cards might cost Health Points (HP) to play.</li>
+          <li><strong>Common Keywords:</strong> (Example: <em>Bleed</em>, <em>Vulnerable</em>, <em>Weak</em>, <em>Strength</em>, <em>Block</em>, <em>Retain</em>, <em>Draw X</em>)</li>
+        </ul>
+      </li>
+    </ul>
+    <figure class="gameplay-visual">
+      <img src="/img/annotated-card-example.png" alt="Annotated Card Example">
+      <figcaption>Anatomy of a Thumbwarrior card.</figcaption>
+    </figure>
+    <figure class="gameplay-visual">
+      <img src="/img/card-carousel-example.png" alt="Card Carousel in Hand">
+      <figcaption>Your hand of cards, ready for action!</figcaption>
+    </figure>
+  </section>
+
+  <section id="combat-screen">
+    <h2>Combat Screen</h2>
+    <p>This is where the action happens!</p>
+    <ul>
+      <li><strong>Your Hand:</strong> Displayed as a draggable card carousel at the bottom of the screen.</li>
+      <li><strong>Energy Display:</strong> Clearly visible, showing your current/max energy (e.g., "3/3").</li>
+      <li><strong>Draw Pile & Discard Pile:</strong> Icons or areas on screen showing how many cards are left in your draw pile and how many are in your discard. Your discard pile is reshuffled into your draw pile when you run out of cards to draw.</li>
+      <li><strong>Enemy Intent:</strong> Crucial for planning! An icon above each enemy will indicate their planned action for their next turn (e.g., a sword for attack, a shield for block, a swirling icon for a special ability/debuff).</li>
+      <li><strong>Player & Enemy Status:</strong>
+        <ul>
+          <li>Your HP and current Block are clearly displayed.</li>
+          <li>Active buffs (positive effects) and debuffs (negative effects) on both you and enemies are shown as icons with turn counters. <strong>Long tap</strong> these icons for details!</li>
+        </ul>
+      </li>
+      <li><strong>Ending Your Turn:</strong> When you've played all the cards you want (or can), tap the "End Turn" button, typically located in an easy-to-reach spot for your thumb.</li>
+    </ul>
+    <figure class="gameplay-visual">
+      <img src="/img/combat-ui-example.png" alt="Main Combat UI Screenshot">
+      <figcaption>The main combat interface.</figcaption>
+    </figure>
+  </section>
+
+  <section id="navigating-dungeon">
+    <h2>Navigating the Dungeon</h2>
+    <p>The path you choose can greatly impact your run.</p>
+    <ul>
+      <li><strong>Map Structure:</strong> The dungeon map is presented as a series of vertically connected nodes. After completing an encounter, you'll typically choose between 1-3 paths leading to the next node. <strong>Tap</strong> your desired next encounter.</li>
+      <li><strong>Node Types:</strong>
+        <ul>
+          <li><strong>Enemy Encounters:</strong> Standard battles against one or more foes.</li>
+          <li><strong>Elite Encounters:</strong> Tougher battles against stronger enemies, but with better rewards.</li>
+          <li><strong>Boss Encounters:</strong> Found at the end of each of the 5 floors. Defeat them to progress!</li>
+          <li><strong>Rest Sites:</strong> Choose to either heal a percentage of your HP or upgrade a single card in your deck for the rest of the run.</li>
+          <li><strong>Treasure Chests:</strong> Open these to find powerful Relics (passive items) or sometimes rare cards or gold.</li>
+          <li><strong>Shop Nodes:</strong> Spend gold (earned from battles/events) to buy new cards, relics, or pay to remove a card from your deck.</li>
+          <li><strong>Event Nodes ('?'):</strong> Trigger random story events with choices that can lead to positive or negative outcomes, new cards, relics, or status changes.</li>
+        </ul>
+      </li>
+    </ul>
+    <figure class="gameplay-visual">
+      <img src="/img/dungeon-map-example.png" alt="Dungeon Map Screenshot">
+      <figcaption>Navigating the dungeon map.</figcaption>
+    </figure>
+  </section>
+
+  <section id="tips">
+    <h2>Tips for New Thumbwarriors</h2>
+    <ul>
+      <li><strong>Long Tap Everything!</strong> If you're unsure what a card, relic, buff, or debuff does, long tap it for a detailed explanation. This is your best friend for learning the game.</li>
+      <li><strong>Deck Size Matters:</strong> A smaller, more focused deck (often called "thinning your deck") can be more consistent and powerful than a large deck filled with mediocre cards. Don't be afraid to skip card rewards or use shops to remove basic Strikes and Defends.</li>
+      <li><strong>Read Enemy Intents:</strong> Always check what enemies plan to do next. This allows you to prioritize blocking big attacks, finishing off a dangerous enemy before they act, or setting up for your next turn.</li>
+      <li><strong>Understand the Stressor System:</strong> As you complete runs, you'll unlock Stressors that add new layers of difficulty. These are key to long-term replayability and mastering Thumbwarrior.</li>
+      <li><strong>Experiment!</strong> Rogue-likes are about learning from each run. Try different card combinations and strategies to see what works best for you.</li>
+    </ul>
+  </section>
+
+  <p>Good luck, Thumbwarrior! We'll see you in the dungeons, and may your thumb be mighty!</p>
+</article>

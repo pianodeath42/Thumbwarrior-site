@@ -1,11 +1,11 @@
 export default {
-	title: "Eleventy Base Blog v9",
-	url: "https://example.com/",
-	language: "en",
-	description: "I am writing about my experiences as a naval navel-gazer.",
-	author: {
-		name: "Your Name Here",
-		email: "youremailaddress@example.com",
-		url: "https://example.com/about-me/"
-	}
+		title: "Thumbwarrior", // <<< CHANGE THIS LINE
+		url: "https://thumbwarrior.app", // Your actual domain when live
+		language: "en",
+		description: "Thumbwarrior: The one-thumb card battler RPG.",
+		author: {
+				name: "Robert Monroe",
+				email: "thumbwarrior9@gmail.com", // Optional
+				url: "https://thumbwarrior.app/about" // Optional
+		}
 }

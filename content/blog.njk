@@ -1,10 +1,26 @@
----js
-const eleventyNavigation = {
-	key: "Archive",
-	order: 2
-};
 ---
-<h1>Archive</h1>
+title: "Thumbwarrior Dev Diary"
+layout: layouts/base.njk
+eleventyNavigation:
+  key: DevDiary
+  title: "Dev Diary"
+  order: 4 # Or your preferred, unique order number (e.g., Home:1, HowToPlay:2, About:3, DevDiary:4)
+---
+{# This page will serve as the main listing for your blog posts/dev diary entries #}
 
-{% set postslist = collections.posts %}
-{% include "postslist.njk" %}
+<article class="page-content dev-diary-archive site-container">
+  <h1>{{ title }}</h1>
+
+  <p>Welcome to the official development diary for Thumbwarrior! Here you'll find the latest news, updates, behind-the-scenes insights, and thoughts on the journey of creating this one-thumb card battler.</p>
+
+  {# This assumes your blog posts are in the "posts" collection (default for eleventy-base-blog) #}
+  {# and you have an _includes/postslist.njk partial to render them. #}
+  {% set postslist = collections.posts | reverse %} {# Get all posts, reverse to show newest first #}
+  
+  <div class="posts-list-container">
+    {% include "postslist.njk" %} {# This partial will loop through `postslist` #}
+  </div>
+
+  {# You might want to add pagination here later if you have many posts #}
+  {# The eleventy-base-blog starter often includes pagination setup you can adapt #}
+</article>

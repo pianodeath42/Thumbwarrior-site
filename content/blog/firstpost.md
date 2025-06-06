@@ -1,25 +1,30 @@
 ---
-title: This is my first post.
-description: This is a post on My Blog about agile frameworks.
-date: 2018-05-01
-tags: another tag
+title: Welcome to the Thumbwarrior Dev Blog!
+description: Our first post introducing the game and our development journey.
+date: 2025-06-02 # Use current date or desired post date
+tags: ["devlog", "introduction"] # Tags help organize posts
+layout: layouts/post.njk # This tells Eleventy to use the blog post layout
+# If your starter uses Eleventy Navigation for posts, you might add:
+# eleventyNavigation:
+#   key: WelcomeDevlog
+#   parent: Blog # Assuming you have a "Blog" or "News" top-level nav item
 ---
-Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.
 
-Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.
+Hello Thumbwarriors!
 
-## Section Header
+Welcome to the very first post on the official Thumbwarrior dev blog! We're incredibly excited to share more about the game, our development process, and the journey of bringing this one-thumb strategic card battler to life.
 
-Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.
+## What is Thumbwarrior?
+(You can put a brief recap here or link to your About page)
 
-```diff-js
- // this is a command
- function myCommand() {
-+  let counter = 0;
--  let counter = 1;
-   counter++;
- }
+## What to Expect from this Blog
+Here, we'll be posting:
+* Updates on development progress.
+* Deep dives into game mechanics and design choices.
+* Behind-the-scenes looks at art and sound creation.
+* Community highlights and much more!
 
- // Test with a line break above this line.
- console.log('Test');
-```
+We're pouring a lot of passion into making Thumbwarrior a unique and engaging experience, especially for those who love strategy but need it in a mobile-friendly, one-handed package.
+
+Stay tuned for more updates!
+*- [Your Name/Studio Name]*

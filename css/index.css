@@ -1,67 +1,104 @@
-/* Defaults */
+/* css/index.css */
+
+/* Import "Start 2P" Font */
+@font-face {
+	font-family: 'Start 2P';
+	src: url('/fonts/PressStart2P-Regular.ttf') format('truetype'); /* Adjust path if you placed it elsewhere */
+	font-weight: normal;
+	font-style: normal;
+}
+
+/*
+	Define a secondary pixel font for body text if desired.
+	For now, we'll use a generic sans-serif as a fallback.
+	If you choose another pixel font (e.g., "Pixelify Sans" from Google Fonts),
+	you would import it similarly.
+*/
+@font-face {
+	font-family: 'PixelBodyFont'; /* Example name */
+	/* src: url('/fonts/YourPixelBodyFont.ttf') format('truetype'); */
+	/* For now, we'll let it fall back to sans-serif if not defined */
+}
+
+
+/* CSS Variables for Colors and Fonts */
 :root {
-	--font-family: -apple-system, system-ui, sans-serif;
-	--font-family-monospace: Consolas, Menlo, Monaco, Andale Mono WT, Andale Mono, Lucida Console, Lucida Sans Typewriter, DejaVu Sans Mono, Bitstream Vera Sans Mono, Liberation Mono, Nimbus Mono L, Courier New, Courier, monospace;
+	--font-primary: 'Start 2P', sans-serif;
+	--font-secondary: 'PixelBodyFont', 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Fallback to common sans-serif */
+
+	/* SNES-Inspired Color Palette (Dark Blue/Gray Theme) */
+	--color-bg-dark: #2a2a3a;    /* Darkest blue/gray for backgrounds */
+	--color-bg-medium: #3a3a4a; /* Medium blue/gray for alternating sections */
+	--color-bg-light: #4a4a5a;  /* Lighter blue/gray for accents or containers */
+	
+	--color-text-light: #ffffff; /* Primary text color (white/off-white) */
+	--color-text-medium: #c0c0c0;/* Secondary text color (light gray) */
+	
+	--color-accent-primary: #ff9900; /* Orange/Yellow accent (from your icon/CTAs) */
+	--color-accent-secondary: #7289DA; /* Discord blue for Discord button */
+	--color-border-light: #ffffff;
+	--color-border-dark: #555555; /* Darker border for contrast, e.g., SNES chunky borders */
+
+	/* Other variables */
+	--site-max-width: 1100px;
+	--content-max-width: 750px; /* Max width for readable text content */
+	--border-radius-pixel: 0px; /* For sharp pixel corners, or try 3px-5px for slightly rounded */
 }
 
-/* Theme colors */
-:root {
-	--color-gray-20: #e0e0e0;
-	--color-gray-50: #C0C0C0;
-	--color-gray-90: #333;
-
-	--background-color: #fff;
-
-	--text-color: var(--color-gray-90);
-	--text-color-link: #082840;
-	--text-color-link-active: #5f2b48;
-	--text-color-link-visited: #17050F;
-
-	--syntax-tab-size: 2;
-}
-
-@media (prefers-color-scheme: dark) {
-	:root {
-		--color-gray-20: #e0e0e0;
-		--color-gray-50: #C0C0C0;
-		--color-gray-90: #dad8d8;
-
-		/* --text-color is assigned to --color-gray-_ above */
-		--text-color-link: #1493fb;
-		--text-color-link-active: #6969f7;
-		--text-color-link-visited: #a6a6f8;
-
-		--background-color: #15202b;
-	}
-}
-
-
-/* Global stylesheet */
-* {
+/* Basic Reset and Body Styles */
+*,
+*::before,
+*::after {
 	box-sizing: border-box;
-}
-
-@view-transition {
-	navigation: auto;
-}
-
-html,
-body {
+	margin: 0;
 	padding: 0;
-	margin: 0 auto;
-	font-family: var(--font-family);
-	color: var(--text-color);
-	background-color: var(--background-color);
-}
-html {
-	overflow-y: scroll;
-}
-body {
-	max-width: 40em;
 }
 
-/* https://www.a11yproject.com/posts/how-to-hide-content/ */
-.visually-hidden:not(:focus):not(:active) {
+body {
+	font-family: var(--font-secondary);
+	background-color: var(--color-bg-dark);
+	color: var(--color-text-light);
+	line-height: 1.6;
+	-webkit-font-smoothing: antialiased; /* Optional: for smoother text on some screens */
+	-moz-osx-font-smoothing: grayscale; /* Optional */
+	display: flex; /* For sticky footer */
+	flex-direction: column; /* For sticky footer */
+	min-height: 100vh; /* For sticky footer */
+}
+
+/* To make main content take available space for sticky footer */
+main#main {
+	flex-grow: 1;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: var(--font-primary);
+	line-height: 1.2;
+	margin-bottom: 0.75em;
+}
+
+p {
+	margin-bottom: 1em;
+}
+
+a {
+	color: var(--color-accent-primary);
+	text-decoration: none; /* Or underline, depending on style */
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+img, video, iframe {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+
+/* Visually Hidden Class (from base.njk starter) */
+.visually-hidden {
 	clip: rect(0 0 0 0);
 	clip-path: inset(50%);
 	height: 1px;
@@ -71,228 +108,731 @@ body {
 	width: 1px;
 }
 
-/* Fluid images via https://www.zachleat.com/web/fluid-images/ */
-img{
-  max-width: 100%;
-}
-img[width][height] {
-  height: auto;
-}
-img[src$=".svg"] {
-  width: 100%;
-  height: auto;
-  max-width: none;
-}
-video,
-iframe {
+
+/* General Site Structure (Optional basic centering) */
+.site-container {
+	max-width: var(--site-max-width);
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 20px;
+	padding-right: 20px;
 	width: 100%;
-	height: auto;
-}
-iframe {
-	aspect-ratio: 16/9;
 }
 
-p:last-child {
-	margin-bottom: 0;
-}
-p {
-	line-height: 1.5;
-}
-
-li {
-	line-height: 1.5;
-}
-
-a[href] {
-	color: var(--text-color-link);
-}
-a[href]:visited {
-	color: var(--text-color-link-visited);
-}
-a[href]:hover,
-a[href]:active {
-	color: var(--text-color-link-active);
-}
-
-main,
-footer {
-	padding: 1rem;
-}
-main :first-child {
-	margin-top: 0;
-}
-
-header {
-	border-bottom: 1px dashed var(--color-gray-20);
-}
-
-#skip-link {
+/* Basic Button Styling */
+.cta-button {
+	display: inline-block;
+	font-family: var(--font-primary);
+	background-color: var(--color-accent-primary);
+	color: var(--color-bg-dark); /* Text color for button */
+	padding: 12px 25px;
 	text-decoration: none;
-	background: var(--background-color);
-	color: var(--text-color);
-	padding: 0.5rem 1rem;
-	border: 1px solid var(--color-gray-90);
-	border-radius: 2px;
+	font-size: 1em; /* Adjust as needed */
+	border: 2px solid var(--color-bg-dark); /* Pixel border */
+	box-shadow: 3px 3px 0px var(--color-bg-dark); /* Pixel shadow effect */
+	border-radius: var(--border-radius-pixel);
+	transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
+	cursor: pointer;
+	text-align: center;
 }
 
-/* Prevent visually-hidden skip link fom pushing content around when focused */
-#skip-link.visually-hidden:focus {
-	position: absolute;
-	top: 1rem;
-	left: 1rem;
-	/* Ensure it is positioned on top of everything else when it is shown */
-	z-index: 999;
+.cta-button:hover {
+	transform: translate(1px, 1px);
+	box-shadow: 2px 2px 0px var(--color-bg-dark);
+	text-decoration: none;
 }
 
-.links-nextprev {
-	display: flex;
-	justify-content: space-between;
-	gap: .5em 1em;
-	list-style: "";
-	border-top: 1px dashed var(--color-gray-20);
-	padding: 1em 0;
-}
-.links-nextprev > * {
-	flex-grow: 1;
-}
-.links-nextprev-next {
-	text-align: right;
+.cta-button:active {
+	transform: translate(3px, 3px);
+	box-shadow: 0px 0px 0px var(--color-bg-dark);
 }
 
-table {
-	margin: 1em 0;
+/* Example for Discord button */
+.discord-button {
+	background-color: var(--color-accent-secondary);
+	color: var(--color-text-light);
+	border-color: var(--color-bg-dark); /* Match other buttons */
+	box-shadow: 3px 3px 0px var(--color-bg-dark); /* Match other buttons */
 }
-table td,
-table th {
-	padding-right: 1em;
+.discord-button:hover {
+	border-color: var(--color-bg-dark); /* Match other buttons */
+	box-shadow: 2px 2px 0px var(--color-bg-dark); /* Match other buttons */
 }
-
-pre,
-code {
-	font-family: var(--font-family-monospace);
-}
-pre:not([class*="language-"]) {
-	margin: .5em 0;
-	line-height: 1.375; /* 22px /16 */
-	-moz-tab-size: var(--syntax-tab-size);
-	-o-tab-size: var(--syntax-tab-size);
-	tab-size: var(--syntax-tab-size);
-	-webkit-hyphens: none;
-	-ms-hyphens: none;
-	hyphens: none;
-	direction: ltr;
-	text-align: left;
-	white-space: pre;
-	word-spacing: normal;
-	word-break: normal;
-	overflow-x: auto;
-}
-code {
-	word-break: break-all;
+.discord-button:active {
+	box-shadow: 0px 0px 0px var(--color-bg-dark); /* Match other buttons */
 }
 
-/* Header */
+/* Section Base Styles (Applied to classes in index.njk) */
+.hero-section,
+.pillars-section,
+.gameplay-teaser-section,
+.full-saga-section,
+.community-section {
+	padding: 50px 20px; /* Default padding for sections */
+	text-align: center;
+	border-bottom: 4px solid var(--color-border-dark); /* SNES-style chunky border for all sections */
+}
+.community-section { /* Last section on homepage, no bottom border */
+		border-bottom: none;
+}
+
+
+.hero-section {
+	background-color: var(--color-bg-dark);
+	color: var(--color-text-light);
+	padding-top: 60px; /* More padding for hero */
+	padding-bottom: 60px;
+}
+
+.pillars-section {
+	background-color: var(--color-bg-medium);
+	color: var(--color-text-light);
+}
+
+.gameplay-teaser-section {
+	background-color: var(--color-bg-dark);
+	color: var(--color-text-light);
+}
+
+.full-saga-section {
+	background-color: var(--color-bg-medium);
+	color: var(--color-text-light);
+}
+
+.community-section {
+	background-color: var(--color-bg-dark); /* Or var(--color-bg-light) for contrast if desired */
+	color: var(--color-text-light);
+}
+
+/* Header from base.njk (basic styling) */
 header {
+	padding: 20px 0; /* Use site-container for horizontal padding */
+	background-color: var(--color-bg-light);
+	border-bottom: 2px solid var(--color-border-dark);
+}
+header .header-content { /* Add this class to a div inside header in base.njk */
 	display: flex;
-	gap: 1em;
-	flex-wrap: wrap;
 	justify-content: space-between;
 	align-items: center;
-	padding: 1em;
-}
-.home-link {
-	flex-grow: 1;
-	font-size: 1em; /* 16px /16 */
-	font-weight: 700;
-}
-.home-link:link:not(:hover) {
-	text-decoration: none;
 }
 
-/* Nav */
-.nav {
-	display: flex;
-	gap: .5em 1em;
-	padding: 0;
-	margin: 0;
+header .home-link {
+	font-family: var(--font-primary);
+	font-size: 1.5em;
+	color: var(--color-accent-primary);
+}
+
+header .nav {
 	list-style: none;
+	display: flex;
 }
-.nav-item {
-	display: inline-block;
+
+header .nav-item {
+	margin-left: 20px;
 }
-.nav-item a[href]:not(:hover) {
-	text-decoration: none;
+
+header .nav-item a {
+	font-family: var(--font-primary);
+	color: var(--color-text-light);
+	font-size: 0.9em; /* Smaller nav links */
 }
-.nav a[href][aria-current="page"] {
+header .nav-item a[aria-current="page"] {
+	color: var(--color-accent-primary);
 	text-decoration: underline;
 }
 
-/* Posts list */
-.postlist {
-	counter-reset: start-from var(--postlist-index);
-	list-style: none;
-	padding: 0;
-	padding-left: 1.5rem;
-}
-.postlist-item {
+/* ========= HERO SECTION STYLING ========= */
+.hero-section {
+	min-height: 80vh; /* Make it take up a good portion of the viewport height */
 	display: flex;
-	flex-wrap: wrap;
-	align-items: baseline;
-	counter-increment: start-from -1;
-	margin-bottom: 1em;
-}
-.postlist-item:before {
-	display: inline-block;
-	pointer-events: none;
-	content: "" counter(start-from, decimal-leading-zero) ". ";
-	line-height: 100%;
-	text-align: right;
-	margin-left: -1.5rem;
-}
-.postlist-date,
-.postlist-item:before {
-	font-size: 0.8125em; /* 13px /16 */
-	color: var(--color-gray-90);
-}
-.postlist-date {
-	word-spacing: -0.5px;
-}
-.postlist-link {
-	font-size: 1.1875em; /* 19px /16 */
-	font-weight: 700;
-	flex-basis: calc(100% - 1.5rem);
-	padding-left: .25em;
-	padding-right: .5em;
-	text-underline-position: from-font;
-	text-underline-offset: 0;
-	text-decoration-thickness: 1px;
-}
-.postlist-item-active .postlist-link {
-	font-weight: bold;
-}
-
-/* Tags */
-.post-tag {
-	display: inline-flex;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	text-transform: capitalize;
-	font-style: italic;
-}
-.postlist-item > .post-tag {
-	align-self: center;
 }
 
-/* Tags list */
-.post-metadata {
-	display: inline-flex;
+.hero-section h1 {
+	font-size: clamp(2em, 5vw, 3.5em); /* Responsive font size */
+	color: var(--color-accent-primary); /* Make the main headline pop with accent color */
+	text-shadow: 2px 2px 0px var(--color-bg-dark), /* Outline effect */
+							 -2px -2px 0px var(--color-bg-dark),
+							 2px -2px 0px var(--color-bg-dark),
+							 -2px 2px 0px var(--color-bg-dark),
+							 3px 3px 0px rgba(0,0,0,0.7); /* Drop shadow */
+	margin-bottom: 0.5em; /* Adjust spacing */
+}
+
+.hero-section .hero-visual {
+	margin: 20px auto;
+	width: 100%; /* Make it responsive */
+	max-width: 280px; /* Typical phone width for vertical game */
+	aspect-ratio: 9 / 16; /* Maintain vertical phone aspect ratio */
+	background-color: var(--color-bg-light); /* Use theme color */
+	border: 3px solid var(--color-border-light); /* Chunky pixel border */
+	box-shadow: 4px 4px 0px var(--color-border-dark); /* Pixel shadow */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden; /* If you put a real video/gif that might be larger */
+}
+
+.hero-section .hero-visual p { /* Styling the placeholder text */
+	font-family: var(--font-primary);
+	color: var(--color-text-medium);
+	font-size: 0.9em;
+	margin-bottom: 0; /* Reset margin for p inside this div */
+}
+
+.hero-section > p { /* Target the main descriptive paragraph directly under hero-section */
+	font-family: var(--font-secondary); /* Or your chosen pixel body font */
+	font-size: clamp(1em, 2.5vw, 1.3em);
+	color: var(--color-text-light);
+	max-width: 600px;
+	margin-top: 1em;
+	margin-bottom: 2em;
+	line-height: 1.5;
+}
+
+.hero-section .cta-button {
+	font-size: clamp(1em, 3vw, 1.4em); /* Make hero CTA slightly larger */
+	padding: 15px 35px; /* Adjust padding */
+	/* Ensure pixel shadow and border are crisp */
+	border: 3px solid var(--color-bg-dark);
+	box-shadow: 4px 4px 0px var(--color-bg-dark);
+}
+
+.hero-section .cta-button:hover {
+	transform: translate(2px, 2px);
+	box-shadow: 2px 2px 0px var(--color-bg-dark);
+}
+
+.hero-section .cta-button:active {
+	transform: translate(4px, 4px);
+	box-shadow: 0px 0px 0px var(--color-bg-dark);
+}
+
+/* ========= PILLARS SECTION STYLING ========= */
+.pillars-grid {
+	display: flex;
+	flex-wrap: wrap; /* Allow pillars to wrap on smaller screens */
+	justify-content: space-around; /* Distribute space around pillars */
+	gap: 30px; /* Space between pillars */
+	max-width: var(--site-max-width); /* Use site max width */
+	margin: 0 auto; /* Center the grid */
+}
+
+.pillar {
+	/* background-color: var(--color-bg-light); */ /* Optional: slightly different bg for each pillar box */
+	border: 3px solid var(--color-border-light);
+	box-shadow: 4px 4px 0px var(--color-border-dark);
+	padding: 25px;
+	flex: 1 1 280px; /* Flex grow, shrink, basis - allows them to grow but have a base width */
+	max-width: 320px; /* Max width for each pillar */
+	display: flex;
+	flex-direction: column;
+	align-items: center; /* Center icon and text */
+	text-align: center;
+	border-radius: var(--border-radius-pixel); /* Or a small pixelated radius like 3px */
+}
+
+.pillar .pillar-icon {
+	width: 70px;
+	height: 70px;
+	background-color: var(--color-bg-dark); /* Darker background for icon box */
+	border: 3px solid var(--color-border-light);
+	box-shadow: 2px 2px 0px var(--color-border-dark);
+	margin-bottom: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: var(--border-radius-pixel); /* Or a small pixelated radius */
+}
+
+.pillar .pillar-icon img { /* Style for actual image inside the icon box */
+		max-width: 80%; /* Ensure image fits well */
+		max-height: 80%;
+		object-fit: contain;
+}
+
+.pillar .pillar-icon p { /* Styling the placeholder "ICON" text */
+	font-family: var(--font-primary);
+	color: var(--color-text-medium);
+	font-size: 0.8em;
+	margin-bottom: 0;
+}
+
+.pillar h2 {
+	font-size: clamp(1.3em, 3vw, 1.6em); /* Responsive font size */
+	color: var(--color-accent-primary); /* Use accent for pillar titles */
+	margin-bottom: 0.5em;
+	text-shadow: 1px 1px 0px var(--color-bg-dark),
+							 -1px -1px 0px var(--color-bg-dark),
+							 1px -1px 0px var(--color-bg-dark),
+							 -1px 1px 0px var(--color-bg-dark); /* Simpler outline */
+}
+
+.pillar p {
+	font-family: var(--font-secondary); /* Or your chosen pixel body font */
+	font-size: clamp(0.9em, 2vw, 1em);
+	color: var(--color-text-light);
+	line-height: 1.5;
+	margin-bottom: 0; /* Remove default bottom margin from p if it's the last element */
+}
+
+/* ========= GAMEPLAY TEASER SECTION STYLING ========= */
+.gameplay-teaser-section h2 {
+	font-size: clamp(1.8em, 4vw, 2.5em);
+	color: var(--color-text-light); /* Or var(--color-accent-primary) if you want it to pop */
+	margin-bottom: 1em;
+	 text-shadow: 2px 2px 0px var(--color-bg-medium), /* Outline effect against its dark background */
+							 -2px -2px 0px var(--color-bg-medium),
+							 2px -2px 0px var(--color-bg-medium),
+							 -2px 2px 0px var(--color-bg-medium),
+							 3px 3px 0px rgba(0,0,0,0.5); /* Drop shadow */
+}
+
+.gif-gallery {
+	display: flex;
 	flex-wrap: wrap;
-	gap: .5em;
+	justify-content: center; /* Center GIFs if they don't fill the row */
+	gap: 20px; /* Space between GIFs */
+	max-width: calc(280px * 3 + 20px * 2 + 20px*2); /* Approx 3 gifs wide + gap + padding for gallery */
+	margin: 0 auto 30px auto; /* Center the gallery */
+}
+
+.gif-gallery .gif-placeholder {
+	flex: 0 0 280px; /* Don't grow or shrink, fixed base width */
+	width: 280px; /* Explicit width */
+	aspect-ratio: 9 / 16; /* Maintain vertical aspect ratio */
+	background-color: var(--color-bg-light);
+	border: 3px solid var(--color-border-light);
+	box-shadow: 3px 3px 0px var(--color-border-dark);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden; /* For actual GIFs */
+	border-radius: var(--border-radius-pixel);
+}
+.gif-gallery .gif-placeholder img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover; /* Or contain, depending on GIF aspect ratio */
+}
+
+.gif-gallery .gif-placeholder p { /* Styling the placeholder text */
+	font-family: var(--font-primary);
+	color: var(--color-text-medium);
+	font-size: 0.9em;
+	margin-bottom: 0;
+}
+
+.gameplay-teaser-section > p { /* The descriptive paragraph */
+	font-family: var(--font-secondary);
+	font-size: clamp(1em, 2.5vw, 1.2em);
+	max-width: 700px;
+	margin: 0 auto 30px auto; /* Center and add bottom margin */
+	line-height: 1.5;
+}
+
+.gameplay-teaser-section .cta-button {
+	font-size: clamp(1em, 2.8vw, 1.3em);
+	/* Uses global .cta-button styles, can add specifics if needed */
+}
+
+/* ========= "READY FOR THE FULL SAGA?" SECTION STYLING ========= */
+.full-saga-section h2 {
+	font-size: clamp(1.8em, 4vw, 2.5em);
+	color: var(--color-text-light); /* Or accent */
+	margin-bottom: 1em;
+	text-shadow: 2px 2px 0px var(--color-bg-dark), /* Outline effect against its medium background */
+							 -2px -2px 0px var(--color-bg-dark),
+							 2px -2px 0px var(--color-bg-dark),
+							 -2px 2px 0px var(--color-bg-dark),
+							 3px 3px 0px rgba(0,0,0,0.5); /* Drop shadow */
+}
+
+.full-saga-section > p { /* The introductory paragraphs */
+	font-family: var(--font-secondary);
+	font-size: clamp(1em, 2.5vw, 1.2em);
+	max-width: 700px;
+	margin-left: auto;
+	margin-right: auto;
+	line-height: 1.5;
+}
+
+.full-saga-section strong { /* For "COMPLETE THUMBWARRIOR ADVENTURE" */
+	font-family: var(--font-primary); /* Use primary font for emphasis */
+	color: var(--color-accent-primary); /* Use accent color */
+	font-weight: normal; /* Start 2P is already bold-like */
+}
+
+.features-full-game {
+	max-width: 650px; /* Adjust width as needed */
+	margin: 30px auto; /* Center it */
+	padding: 20px;
+	background-color: var(--color-bg-dark); /* Darker box for features */
+	border: 3px solid var(--color-border-light);
+	box-shadow: 4px 4px 0px var(--color-border-dark);
+	border-radius: var(--border-radius-pixel);
+}
+
+.features-full-game h3 {
+	font-size: clamp(1.2em, 3vw, 1.5em);
+	color: var(--color-text-light);
+	text-align: center;
+	margin-bottom: 1em;
+}
+
+.features-full-game ul {
 	list-style: none;
 	padding: 0;
-	margin: 0;
-}
-.post-metadata time {
-	margin-right: 1em;
+	font-family: var(--font-secondary);
+	font-size: clamp(0.9em, 2vw, 1.1em);
+	text-align: left; /* Align list items to the left */
 }
 
+.features-full-game li {
+	margin-bottom: 0.8em;
+	padding-left: 30px; /* Space for the star/icon */
+	position: relative; /* For positioning the star */
+}
+
+.features-full-game li img { /* For the pixel-star.png */
+		/* Inline styles already set position:absolute, left:0, top:2px, width:16px, height:16px */
+		/* No additional styles needed here unless you remove inline styles */
+}
+.features-full-game li span { /* The text star '★' if used as fallback */
+	position: absolute;
+	left: 0;
+	top: 0; /* Adjust alignment if needed */
+	font-family: var(--font-primary);
+	color: var(--color-accent-primary);
+	font-size: 1.1em; /* Make star slightly larger */
+}
+
+.fair-play-promise {
+	border: 3px solid var(--color-accent-primary); /* Accent border for this important box */
+	padding: 25px;
+	max-width: 550px;
+	margin: 40px auto 30px auto; /* More margin around it */
+	background-color: var(--color-bg-dark); /* Darker background */
+	box-shadow: 4px 4px 0px var(--color-border-dark);
+	border-radius: var(--border-radius-pixel);
+}
+
+.fair-play-promise h3 {
+	font-size: clamp(1.3em, 3.2vw, 1.7em);
+	color: var(--color-accent-primary); /* Accent color for "OUR PROMISE" */
+	margin-bottom: 0.75em;
+}
+
+.fair-play-promise p {
+	font-family: var(--font-primary); /* Use primary font for NO GACHA etc. */
+	font-size: clamp(1em, 2.8vw, 1.3em);
+	margin-bottom: 0.3em; /* Tighter spacing */
+	color: var(--color-text-light);
+}
+
+.fair-play-promise p:last-of-type { /* "Just one purchase..." */
+	font-family: var(--font-secondary); /* Back to body font for this line */
+	font-size: clamp(0.9em, 2vw, 1.1em);
+	margin-top: 1em;
+	color: var(--color-text-medium);
+}
+
+.full-saga-section .cta-button {
+	font-size: clamp(1em, 2.8vw, 1.3em);
+	margin-top: 10px; /* Add some space above the button */
+}
+
+/* ========= COMMUNITY SECTION STYLING ========= */
+.community-section h2 {
+	font-size: clamp(1.8em, 4vw, 2.5em);
+	color: var(--color-text-light); /* Or accent */
+	margin-bottom: 1em;
+	text-shadow: 2px 2px 0px var(--color-bg-medium), /* Outline effect against its dark background */
+							 -2px -2px 0px var(--color-bg-medium),
+							 2px -2px 0px var(--color-bg-medium),
+							 -2px 2px 0px var(--color-bg-medium),
+							 3px 3px 0px rgba(0,0,0,0.5); /* Drop shadow */
+}
+
+.community-section > p { /* The introductory paragraph */
+	font-family: var(--font-secondary);
+	font-size: clamp(1em, 2.5vw, 1.2em);
+	max-width: 700px;
+	margin-left: auto;
+	margin-right: auto;
+	line-height: 1.5;
+	margin-bottom: 2em; /* More space before the button */
+}
+
+.community-section .discord-button {
+	font-size: clamp(1.1em, 3vw, 1.4em); /* Make Discord button prominent */
+	padding: 15px 35px;
+	/* It already has specific colors from the global .discord-button style */
+	/* You can add an icon here using ::before if you have an SVG or font icon */
+}
+
+.social-icons {
+	margin-top: 30px; /* Space above social icons */
+	display: flex;
+	justify-content: center;
+	align-items: center; /* Vertically align icons if they have different heights */
+	gap: 20px; /* Space between icons */
+}
+
+.social-icons a {
+	/* font-family: var(--font-primary); */ /* Remove if using img icons */
+	/* color: var(--color-text-medium); */ /* Remove if using img icons */
+	/* font-size: 1.5em; */ /* Remove if using img icons */
+	text-decoration: none;
+	/* padding: 5px; */ /* Remove if using img icons */
+	display: inline-block; /* Helps with consistent alignment of images */
+}
+
+/* .social-icons a:hover {
+	color: var(--color-accent-primary);
+} */
+
+.social-icons img {
+	width: 32px; /* Default size for social icons */
+	height: 32px;
+	opacity: 0.8;
+	transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+	vertical-align: middle; /* Good for aligning image-links */
+}
+.social-icons a:hover img {
+	opacity: 1;
+	transform: scale(1.1); /* Slight zoom on hover */
+}
+
+/* ========= FOOTER STYLING (from base.njk) ========= */
+footer {
+	/* background-color, border-top, padding, text-align, font-size already set */
+	color: var(--color-text-medium); /* Lighter text for footer */
+	margin-top: auto; /* Part of sticky footer solution */
+}
+
+.footer-content {
+	/* .site-container class already handles max-width and padding */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 15px; /* Space between footer elements */
+}
+
+.footer-links a,
+.footer-links span {
+	font-family: var(--font-secondary);
+	font-size: 0.9em;
+	color: var(--color-text-medium);
+	margin: 0 5px;
+}
+.footer-links a:hover {
+	color: var(--color-accent-primary);
+}
+.footer-link-separator {
+		user-select: none; /* Make the separator non-selectable */
+}
+
+
+.footer-social { /* Reuses .social-icons styling for consistency, but we can override */
+	margin-top: 0; /* No extra top margin if it's part of the footer flow */
+	/* display: flex; justify-content: center; gap: 15px; */ /* Already in .social-icons */
+}
+.footer-social img {
+	width: 28px; /* Slightly smaller for footer */
+	height: 28px;
+	/* opacity and transition already in .social-icons img */
+}
+
+.footer-copyright p {
+	font-family: var(--font-secondary);
+	font-size: 0.85em;
+	color: var(--color-text-medium);
+	margin-bottom: 0.5em;
+}
+.footer-copyright p:last-child {
+		margin-bottom: 0;
+}
+
+.built-with-eleventy { /* From starter footer */
+		font-size: 0.8em;
+		color: var(--color-text-medium);
+		margin-top: 10px;
+}
+.built-with-eleventy a {
+		color: var(--color-text-medium); /* Keep it subtle */
+}
+.built-with-eleventy a:hover {
+		color: var(--color-accent-primary);
+}
+
+/* ========= PAGE CONTENT STYLING (e.g., for how-to-play.njk, about.njk) ========= */
+.page-content { /* This class is on the <article> in how-to-play.njk and about.njk */
+	/* .site-container class (if also applied to article) handles max-width and L/R padding */
+	padding-top: 30px; /* Top/bottom padding for content pages */
+	padding-bottom: 40px;
+	background-color: var(--color-bg-dark); /* Match section backgrounds or choose a neutral content bg */
+}
+
+.page-content h1 {
+	font-size: clamp(2em, 5vw, 3em); /* Slightly smaller than hero H1 */
+	color: var(--color-accent-primary);
+	margin-bottom: 1em;
+	text-align: center;
+	text-shadow: 2px 2px 0px var(--color-bg-medium), /* Outline effect */
+							 -2px -2px 0px var(--color-bg-medium),
+							 2px -2px 0px var(--color-bg-medium),
+							 -2px 2px 0px var(--color-bg-medium),
+							 3px 3px 0px rgba(0,0,0,0.5); /* Drop shadow */
+}
+
+.page-content h2 {
+	font-size: clamp(1.5em, 4vw, 2.2em);
+	color: var(--color-text-light);
+	margin-top: 1.8em;
+	margin-bottom: 0.8em;
+	border-bottom: 3px solid var(--color-border-dark);
+	padding-bottom: 0.3em;
+	text-shadow: 1px 1px 0px var(--color-bg-medium);
+	text-align: left; /* Align section headers left for content pages */
+	max-width: var(--content-max-width);
+	margin-left: auto;
+	margin-right: auto;
+}
+.page-content h2:first-of-type {
+		margin-top: 0.5em; /* Less top margin for the very first H2 on the page */
+}
+.page-content h3 { /* For sub-headings within sections */
+		font-size: clamp(1.2em, 3vw, 1.7em);
+		color: var(--color-text-medium); /* More subtle than h2 */
+		margin-top: 1.5em;
+		margin-bottom: 0.6em;
+		text-align: left;
+		max-width: var(--content-max-width);
+		margin-left: auto;
+		margin-right: auto;
+}
+
+
+.page-content p,
+.page-content ul,
+.page-content ol {
+	font-family: var(--font-secondary);
+	font-size: clamp(1em, 2.5vw, 1.1em);
+	line-height: 1.7;
+	max-width: var(--content-max-width);
+	 margin-left: auto;
+	 margin-right: auto;
+	 text-align: left; /* Align text left for readability */
+}
+
+.page-content ul,
+.page-content ol {
+	padding-left: 40px; /* Standard indent for lists */
+	margin-bottom: 1em;
+}
+.page-content ul ul, /* Nested lists */
+.page-content ol ol {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+.page-content li {
+		margin-bottom: 0.5em;
+}
+
+.page-content strong {
+		font-weight: normal;
+		color: var(--color-accent-primary);
+		font-family: var(--font-primary); /* Make strong text use pixel font too */
+}
+
+.page-content em {
+		font-style: normal;
+		/* color: var(--color-text-medium); */ /* Example: slightly different color for emphasis */
+}
+
+
+/* Styling for images/GIFs within content pages (e.g., how-to-play) */
+.gameplay-visual { /* This class is on the <figure> in how-to-play.njk and about.njk */
+	margin-top: 1.5em;
+	margin-bottom: 2em;
+	max-width: 550px; /* Set a max-width for these content images/GIFs */
+	margin-left: auto;
+	margin-right: auto; /* Center the figure */
+	border: 3px solid var(--color-border-light);
+	box-shadow: 4px 4px 0px var(--color-border-dark);
+	background-color: var(--color-bg-light);
+	padding: 10px;
+	border-radius: var(--border-radius-pixel);
+}
+
+.gameplay-visual img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+	margin: 0 auto;
+	border-radius: var(--border-radius-pixel);
+}
+
+.gameplay-visual figcaption {
+	font-family: var(--font-secondary);
+	font-size: 0.9em;
+	color: var(--color-text-medium);
+	text-align: center;
+	margin-top: 0.8em;
+	padding: 0 5px; /* Add some padding if caption is long */
+}
+
+/* ========= BLOG POST LIST STYLING (for postslist.njk on Dev Diary page) ========= */
+/* Assumes .dev-diary-archive .posts-list-container wraps the .postlist */
+.dev-diary-archive .posts-list-container {
+	max-width: var(--content-max-width);
+	margin-left: auto;
+	margin-right: auto;
+	text-align: left;
+}
+
+.postlist {
+	list-style: none; /* Removes default numbering if you don't want it, or style ::marker */
+	padding: 0;
+	/* The `reversed` attribute on <ol> will make numbers count down if list-style numbers are shown */
+}
+
+.postlist-item {
+	padding: 20px;
+	margin-bottom: 20px;
+	border: 3px solid var(--color-border-dark);
+	box-shadow: 3px 3px 0px var(--color-border-dark);
+	background-color: var(--color-bg-light); /* Slightly different bg for each post item */
+	border-radius: var(--border-radius-pixel);
+}
+
+/* If using the default OL numbering and want to style it */
+.postlist-item::marker {
+	font-family: var(--font-primary);
+	color: var(--color-accent-primary);
+	font-size: 1.1em;
+}
+
+.postlist-link {
+	font-family: var(--font-primary);
+	font-size: clamp(1.2em, 3vw, 1.6em);
+	color: var(--color-accent-primary);
+	text-decoration: none;
+	display: block; /* Make the whole area clickable if desired, or just text */
+	margin-bottom: 0.3em;
+}
+
+.postlist-link:hover {
+	text-decoration: underline;
+	color: var(--color-text-light); /* Example hover effect */
+}
+
+.postlist-date {
+	font-family: var(--font-secondary); /* Or --font-primary for pixel look */
+	font-size: clamp(0.8em, 1.8vw, 0.9em);
+	color: var(--color-text-medium);
+	display: block;
+}

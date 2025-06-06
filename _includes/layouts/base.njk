@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>{{ title or metadata.title }}</title>
 		<meta name="description" content="{{ description or metadata.description }}">
-		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="{{ metadata.title }}">
+		<link rel="alternate" href="{{ '/feed/feed.xml' | url }}" type="application/atom+xml" title="{{ metadata.title }}">
 
 		{#- Uncomment this if you’d like folks to know that you used Eleventy to build your site!  #}
 		{#- <meta name="generator" content="{{ eleventy.generator }}"> #}
@@ -21,10 +21,10 @@
 		3. Learn more: https://github.com/11ty/eleventy-plugin-bundle
 		#}
 
-		{#- Add an arbitrary string to the bundle #}
+		{#- Add an arbitrary string to the bundle. This is from the starter, can be removed if not used. #}
 		<style>/* This is an arbitrary CSS string added to the bundle */</style>
 		{#- Add the contents of a file to the bundle #}
-		<style>{% include "css/index.css" %}</style>
+		<style>{% include "css/index.css" %}</style> {# This includes your main CSS file #}
 		{#- Or you can add from node_modules #}
 		{# <style>{% include "node_modules/prismjs/themes/prism-okaidia.css" %}</style> #}
 
@@ -33,37 +33,68 @@
 		{#- Renders the CSS bundle using a separate file, if you can't set CSP directive style-src: 'unsafe-inline' #}
 		{#- <link rel="stylesheet" href="{% getBundleFileUrl "css" %}"> #}
 
-		{#- Add the heading-anchors web component to the JavaScript bundle #}
+		{#- Add the heading-anchors web component to the JavaScript bundle (from starter) #}
 		<script type="module">{% include "node_modules/@zachleat/heading-anchors/heading-anchors.js" %}</script>
 	</head>
 	<body>
 		<a href="#main" id="skip-link" class="visually-hidden">Skip to main content</a>
 
 		<header>
-			<a href="/" class="home-link">{{ metadata.title }}</a>
+			<div class="header-content site-container"> {# Added site-container for consistent padding/width #}
+				<a href="{{ '/' | url }}" class="home-link">{{ metadata.title }}</a>
 
-			{#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
-			<nav>
-				<h2 class="visually-hidden">Top level navigation menu</h2>
-				<ul class="nav">
-				{%- for entry in collections.all | eleventyNavigation %}
-					<li class="nav-item"><a href="{{ entry.url }}"{% if entry.url == page.url %} aria-current="page"{% endif %}>{{ entry.title }}</a></li>
-				{%- endfor %}
-				</ul>
-			</nav>
+				{#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
+				<nav>
+					<h2 class="visually-hidden">Top level navigation menu</h2>
+					<ul class="nav">
+					{%- for entry in collections.all | eleventyNavigation %}
+						<li class="nav-item"><a href="{{ entry.url | url }}"{% if entry.url == page.url %} aria-current="page"{% endif %}>{{ entry.title }}</a></li>
+					{%- endfor %}
+					</ul>
+				</nav>
+			</div>
 		</header>
 
 		<main id="main">
-			<heading-anchors>
+			<heading-anchors> {# This web component is from the starter for adding anchors to headings #}
 				{{ content | safe }}
 			</heading-anchors>
 		</main>
 
 		<footer>
-			<p><em>Built with <a href="https://www.11ty.dev/">{{ eleventy.generator }}</a></em></p>
+			<div class="footer-content site-container">
+				<div class="footer-links">
+					<a href="{{ '/privacy-policy/' | url }}">Privacy Policy</a>
+					<span class="footer-link-separator">|</span>
+					<a href="{{ '/terms-of-service/' | url }}">Terms of Service</a>
+					<span class="footer-link-separator">|</span>
+					<a href="mailto:thumbwarrior9@gmail.com">Support: thumbwarrior9@gmail.com</a> {# Replace with your actual email #}
+				</div>
+				<div class="footer-social social-icons"> {# Re-using social-icons class for styling consistency #}
+					<a href="https://www.youtube.com/channel/UC3Aebs90NVsigYqnnXIxzzQ" target="_blank" rel="noopener noreferrer" title="YouTube">
+						<img src="{{ '/img/youtube-pixel-icon.png' | url }}" alt="Thumbwarrior on YouTube">
+					</a>
+					<a href="https://www.tiktok.com/@thumbwarrior3?lang=en" target="_blank" rel="noopener noreferrer" title="TikTok">
+						<img src="{{ '/img/tiktok-pixel-icon.png' | url }}" alt="Thumbwarrior on TikTok">
+					</a>
+					<a href="https://www.instagram.com/thumbwarrior1/?fbclid=IwY2xjawKq7G5leHRuA2FlbQIxMQBicmlkETFLdFFDM2NZaDZRMEtseW9uAR4cs6jMaZ-EXW1cN1Pg2-k8vpvfcHWZz0PI_SAVaTU2a13wap-IRjxZ8jgP_A_aem_Fnv85Hx2b_46V5j0Xw9DcA" target="_blank" rel="noopener noreferrer" title="Instagram">
+						<img src="{{ '/img/instagram-pixel-icon.png' | url }}" alt="Thumbwarrior on Instagram">
+					</a>
+					<a href="https://www.facebook.com/profile.php?id=61576940785046" target="_blank" rel="noopener noreferrer" title="Facebook">
+						<img src="{{ '/img/facebook-pixel-icon.png' | url }}" alt="Thumbwarrior on Facebook">
+					</a>
+					<a href="https://discord.gg/ZxnUXrAf" target="_blank" rel="noopener noreferrer" title="Discord">
+						<img src="{{ '/img/discord-pixel-icon.png' | url }}" alt="Thumbwarrior on Discord"> {# Ensure you have this icon #}
+					</a>
+				</div>
+				<div class="footer-copyright">
+					<p>© 2025 Robert Monroe. Thumbwarrior is a trademark of Robert Monroe. All rights reserved.</p> {# MODIFIED: Hardcoded year, Replace [Your Studio Name] #}
+					{# <p class="footer-game-title">Thumbwarrior</p> #}
+				</div>
+				<p class="built-with-eleventy"><em>Built with <a href="https://www.11ty.dev/">{{ eleventy.generator }}</a></em></p>
+			</div>
 		</footer>
 
-		<!-- This page `{{ page.url }}` was built on {% currentBuildDate %} -->
 		<script type="module" src="{% getBundleFileUrl "js" %}"></script>
 	</body>
 </html>

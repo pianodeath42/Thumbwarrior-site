@@ -1,29 +1,147 @@
----js
-const eleventyNavigation = {
-	key: "Home",
-	order: 1
-};
-
-const numberOfLatestPostsToShow = 3;
 ---
-{% set postsCount = collections.posts | length %}
-{% set latestPostsCount = postsCount | min(numberOfLatestPostsToShow) %}
-<h1>Latest {{ latestPostsCount }} Post{% if latestPostsCount != 1 %}s{% endif %}</h1>
+# This tells Eleventy to use the main site wrapper located at _includes/layouts/base.njk
+layout: layouts/base.njk
+title: Thumbwarrior - Official Site
+eleventyNavigation:
+  key: Home
+  order: 1
+---
 
-{% set postslist = collections.posts | head(-1 * numberOfLatestPostsToShow) %}
-{% set postslistCounter = postsCount %}
-{% include "postslist.njk" %}
+{# ========= HERO SECTION ========= #}
+<section class="hero-section">
+  <h1>STRATEGY IN ONE HAND. TRUE MOBILE GAMING.</h1>
+  
+  <div class="hero-visual">
+    <video autoplay loop muted playsinline src="/video/your-hero-loop.mp4" style="width:100%; height:100%; object-fit:cover;">
+      Your browser does not support the video tag.
+    </video>
+  </div>
 
-{% set morePosts = postsCount - numberOfLatestPostsToShow %}
-{% if morePosts > 0 %}
-<p>{{ morePosts }} more post{% if morePosts != 1 %}s{% endif %} can be found in <a href="blog.njk">the archive</a>.</p>
-{% endif %}
+  <p>
+    Dive into Thumbwarrior: A deep rogue-like card battler designed for effortless one-thumb play.
+  </p>
+  
+  <a href="#" class="cta-button"> {# Replace # with App Store link #}
+    WIELD YOUR THUMB (FREE DEMO)
+  </a>
+</section>
 
-{# List every content page in the project #}
-{#
-<ul>
-	{%- for entry in collections.all %}
-	<li><a href="{{ entry.url }}"><code>{{ entry.url }}</code></a></li>
-	{%- endfor %}
-</ul>
-#}
+{# ========= PILLARS SECTION ========= #}
+<section class="pillars-section">
+  <div class="pillars-grid">
+    
+    <div class="pillar">
+      <div class="pillar-icon">
+        <img src="/img/one-thumb-icon.png" alt="One-Thumb Mastery Icon">
+      </div>
+      <h2>ONE-THUMB MASTERY</h2>
+      <p>Play anywhere, anytime. Deep strategy designed for your hand, making every session instantly accessible and fun.</p>
+    </div>
+
+    <div class="pillar">
+      <div class="pillar-icon">
+        <img src="/img/snes-cartridge-icon.png" alt="Retro Charm Icon">
+      </div>
+      <h2>RETRO CHARM</h2>
+      <p>Dive into SNES-style pixel graphics and jam to banging retro tunes! Lovingly crafted by a single developer with a passion for classic gaming.</p>
+    </div>
+
+    <div class="pillar">
+      <div class="pillar-icon">
+        <img src="/img/treasure-dungeon-icon.png" alt="Endless Adventures Icon">
+      </div>
+      <h2>ENDLESS ADVENTURES</h2>
+      <p>No two runs are the same! Explore ever-changing dungeons, discover unique card combos, and conquer new challenges every time you play.</p>
+    </div>
+
+  </div>
+</section>
+
+{# ========= GAMEPLAY TEASER SECTION ========= #}
+<section class="gameplay-teaser-section">
+  <h2>SEE THUMBWARRIOR IN ACTION!</h2>
+  
+  <div class="gif-gallery">
+    <div class="gif-placeholder"> 
+      <img src="/gifs/combat.gif" alt="Thumbwarrior Combat Gameplay GIF">
+    </div>
+    <div class="gif-placeholder">
+      <img src="/gifs/strategy.gif" alt="Thumbwarrior Card Strategy GIF">
+    </div>
+    <div class="gif-placeholder">
+      <img src="/gifs/exploration.gif" alt="Thumbwarrior Dungeon Exploration GIF">
+    </div>
+  </div>
+
+  <p>
+    Master hundreds of cards, conquer cunning foes, and discover powerful relics. Every run is a new strategic challenge in Thumbwarrior!
+  </p>
+
+  <a href="/how-to-play/" class="cta-button"> {# Link to your how-to-play page when created #}
+    HOW TO PLAY
+  </a>
+</section>
+
+{# ========= "READY FOR THE FULL SAGA?" SECTION ========= #}
+<section class="full-saga-section">
+  <h2>Ready for the Full Saga?</h2>
+  
+  <p>
+    Loved your first taste of Thumbwarrior with the free demo? Your strategic adventure is just beginning!
+  </p>
+  
+  <p>
+    Unlock the <strong>COMPLETE THUMBWARRIOR ADVENTURE</strong> with a simple, one-time purchase right within the game. Get the full, polished experience with continued support from the solo developer!
+  </p>
+
+  <div class="features-full-game">
+    <h3>The full game unleashes:</h3>
+    <ul>
+      {# Note: CSS for .features-full-game li needs position:relative for the img to position correctly #}
+      <li><img src="/img/pixel-star.png" alt="Feature point" style="width:16px; height:16px; position:absolute; left:0; top:2px;">An ever-expanding arsenal of unique cards & powerful relics.</li>
+      <li><img src="/img/pixel-star.png" alt="Feature point" style="width:16px; height:16px; position:absolute; left:0; top:2px;">Challenging new dungeon floors filled with cunning enemies & unique bosses.</li>
+      <li><img src="/img/pixel-star.png" alt="Feature point" style="width:16px; height:16px; position:absolute; left:0; top:2px;">Over 20 "Stressor" difficulty modifiers for ultimate replayability.</li>
+      <li><img src="/img/pixel-star.png" alt="Feature point" style="width:16px; height:16px; position:absolute; left:0; top:2px;">An endless high score mode to test your ultimate strategic endurance!</li>
+    </ul>
+  </div>
+
+  <div class="fair-play-promise">
+    <h3>OUR PROMISE:</h3>
+    <p>NO GACHA.</p>
+    <p>NO ENERGY TIMERS.</p>
+    <p>NO SUBSCRIPTIONS.</p>
+    <p>Just one purchase for the complete Thumbwarrior adventure!</p>
+  </div>
+
+  <a href="#" class="cta-button"> {# Replace # with App Store link #}
+    GET THE FULL GAME!
+  </a>
+</section>
+
+{# ========= COMMUNITY SECTION ========= #}
+<section class="community-section">
+  <h2>JOIN THE THUMBWARRIOR COMMUNITY!</h2>
+  
+  <p>
+    Got strategies to share, feedback for the solo dev, or just want to chat with other Thumbwarriors? Our Discord is the place to be! Help shape the game and be part of our awesome indie community.
+  </p>
+  
+  <a href="https://discord.gg/ZxnUXrAf" target="_blank" rel="noopener noreferrer" class="cta-button discord-button">
+    HOP INTO DISCORD
+  </a>
+
+  <div class="social-icons">
+    <a href="https://www.youtube.com/channel/UC3Aebs90NVsigYqnnXIxzzQ" target="_blank" rel="noopener noreferrer" title="YouTube">
+      <img src="/img/youtube-pixel-icon.png" alt="Thumbwarrior on YouTube">
+    </a>
+    <a href="https://www.tiktok.com/@thumbwarrior3?lang=en" target="_blank" rel="noopener noreferrer" title="TikTok">
+      <img src="/img/tiktok-pixel-icon.png" alt="Thumbwarrior on TikTok">
+    </a>
+    <a href="https://www.instagram.com/thumbwarrior1/?fbclid=IwY2xjawKq7G5leHRuA2FlbQIxMQBicmlkETFLdFFDM2NZaDZRMEtseW9uAR4cs6jMaZ-EXW1cN1Pg2-k8vpvfcHWZz0PI_SAVaTU2a13wap-IRjxZ8jgP_A_aem_Fnv85Hx2b_46V5j0Xw9DcA" target="_blank" rel="noopener noreferrer" title="Instagram">
+      <img src="/img/instagram-pixel-icon.png" alt="Thumbwarrior on Instagram">
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=61576940785046" target="_blank" rel="noopener noreferrer" title="Facebook">
+      <img src="/img/facebook-pixel-icon.png" alt="Thumbwarrior on Facebook">
+    </a>
+  </div>
+</section>
